@@ -1,7 +1,13 @@
+import Nav from '../components/nav'
 import '../styles/index.css'
 
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+  return (
+    <div className='bg-teal-900'>
+      <Nav />
+      <Component {...pageProps} />
+    </div>
+  )
 }
 
 export default MyApp

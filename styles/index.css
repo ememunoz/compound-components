@@ -1,17 +1,33 @@
 @tailwind base;
-
 /* Write your own custom base styles here */
 
 /* Start purging... */
+
 @tailwind components;
 /* Stop purging. */
 
 /* Write your own custom component styles here */
-.btn-blue {
-  @apply bg-blue-500 text-white font-bold py-2 px-4 rounded;
+
+.first-letter:first-letter {
+  float: left;
+  font-size: 48px;
+  line-height: 40px;
+  padding-top: 4px;
+  padding-right: 8px;
+  padding-left: 3px;
+}
+
+.auto-cols-full {
+  grid-auto-columns: 100%;
+}
+
+.i-dont-like-tailwind {
+  color: blue;
+  border-radius: 0;
 }
 
 /* Start purging... */
+
 @tailwind utilities;
 /* Stop purging. */
 
