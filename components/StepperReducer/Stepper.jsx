@@ -3,11 +3,34 @@ import cx from 'classnames'
 const StepperContext = React.createContext()
 const useStepperContext = () => React.useContext(StepperContext)
 
-const Stepper = ({ children, className, ...props }) => {
-  const [currentStep, setCurrentStep] = React.useState(0)
+const stepperActionTypes = {
+  GO_TO: 'GO_TO',
+}
 
+const defaultReducer = (state, action) => {
+  switch (action.type) {
+    case stepperActionTypes.GO_TO:
+      return { ...state, currentStep: action.payload }
+    default:
+      return state
+  }
+}
+
+const defaultState = {
+  currentStep: 0,
+}
+
+const Stepper = ({
+  children,
+  className,
+  state = defaultState,
+  reducer = defaultReducer,
+  ...props
+}) => {
+  // const [currentStep, setCurrentStep] = React.useState(0)
+  const [{ currentStep }, dispatch] = React.useReducer(reducer, state)
   return (
-    <StepperContext.Provider value={{ currentStep, setCurrentStep }}>
+    <StepperContext.Provider value={{ currentStep, dispatch }}>
       <div className={cx('flex flex-col', className)} {...props}>
         {children}
       </div>
@@ -16,7 +39,7 @@ const Stepper = ({ children, className, ...props }) => {
 }
 
 const Indicators = ({ children, className, activeClassName = '', ...rest }) => {
-  const { currentStep, setCurrentStep } = useStepperContext()
+  const { currentStep, dispatch } = useStepperContext()
 
   return (
     <ul className={cx('flex flex-row justify-around', className)} {...rest}>
@@ -31,7 +54,8 @@ const Indicators = ({ children, className, activeClassName = '', ...rest }) => {
           return (
             <li key={index}>
               {React.cloneElement(child, {
-                onClick: () => setCurrentStep(index),
+                onClick: () =>
+                  dispatch({ type: stepperActionTypes.GO_TO, payload: index }),
                 className: cx(childClassName, { [activeClassName]: isActive }),
                 isActive,
                 ...childProps,
@@ -108,4 +132,12 @@ const StepContent = React.forwardRef(
   }
 )
 
-export { Stepper, Indicators, Indicator, Contents, StepContent }
+export {
+  Stepper,
+  Indicators,
+  Indicator,
+  Contents,
+  StepContent,
+  defaultReducer,
+  stepperActionTypes,
+}
