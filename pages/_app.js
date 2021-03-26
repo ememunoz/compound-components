@@ -4,7 +4,7 @@ import '../styles/index.css'
 function MyApp({ Component, pageProps }) {
   return (
     <div
-      className="bg-teal-900 min-h-screen flex flex-col"
+      className="min-h-screen flex flex-col"
       style={{ backgroundColor: 'rgb(34,34,34)' }}
     >
       {/* <Nav /> */}
