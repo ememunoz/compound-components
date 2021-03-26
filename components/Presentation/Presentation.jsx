@@ -98,7 +98,7 @@ const Slides = ({ children, className, style, ...props }) => {
 
 const Heading = ({ children, className, style, ...props }) => (
   <h1
-    className={cx(className)}
+    className={cx('text-white', className)}
     style={{ fontSize: '5vw', ...style }}
     {...props}
   >
@@ -108,7 +108,7 @@ const Heading = ({ children, className, style, ...props }) => (
 
 const Paragraph = ({ children, className, style, ...props }) => (
   <p
-    className={cx(className)}
+    className={cx('text-white', className)}
     style={{ fontSize: '2.5vw', ...style }}
     {...props}
   >

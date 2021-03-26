@@ -253,7 +253,7 @@ const stepperContentsCode = `const Contents = ({ children, className, ...props }
 const stepperContentCode = `const StepContent = React.forwardRef(
   ({ children, className, ...props }, ref) => {
     return (
-      <li className={cx('w-full', className)} ref={ref} {...props}>
+      <li className={cx('...', className)} ref={ref} {...props}>
         {children}
       </li>
     )
